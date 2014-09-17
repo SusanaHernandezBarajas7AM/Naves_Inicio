@@ -19,11 +19,13 @@ bool CGame::Start()
             
 		//Maquina de estados
 		switch(estado){
-			case 0: //INICIALIZAR
+		case Estado::Estado_Iniciando: //INICIALIZAR
 			break;
-			case 1:	//JUGAR	
+		case Estado::Estado_Jugando:	//JUGAR	
 			break;
-			case 2: //SALIR
+			case Estado::Estado_Terminando: //SALIR
+			case Estado::Estado_Finalizando:
+				break;
 				salirJuego = true;
 			break;
 		};
