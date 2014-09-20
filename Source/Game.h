@@ -19,5 +19,5 @@ public:
 	void Finalize();
 
 private:
-	int estado;   Estado estado;///ACT2: Esto esta MAL
+	  Estado estado;///ACT2: Esto esta MAL
 };
