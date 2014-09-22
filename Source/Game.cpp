@@ -3,7 +3,7 @@
 #include "Game.h"
 
 CGame::CGame(){
-	
+	///ACT2: Mal, Bueno vamos mejorando pero en ves de texto, debes de usar tu variale y el enum que creamos en Game.h.
 	"Estado=Iniciando"; //<--Aqui esta mal no debes de poner int debe ser algo asi "estado=xxxxxxxxx" 
 }
 
