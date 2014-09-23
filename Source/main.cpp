@@ -1,5 +1,8 @@
 #include "Game.h"
 #include  <stdlib.h>
+#include "SDL.h"
+#include "SDL_image.h"
+
 
 // La función principal del juego
 int main(int argc, char *argv[]){
