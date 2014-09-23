@@ -3,8 +3,9 @@
 #include "Game.h"
 
 CGame::CGame(){
-	///ACT2: Mal, Bueno vamos mejorando pero en ves de texto, debes de usar tu variale y el enum que creamos en Game.h.
-	Estado; //<--Aqui esta mal no debes de poner int debe ser algo asi "estado=xxxxxxxxx" 
+	///ACT2: Mal, Debe ser la variable lo que pongas y no el nombre de tu enumerador. tu variable se llama estado, y debes de asignarle
+	//un valor de los que tiene nu enumerador, eso seria tu primer estado.
+	Estado; 
 }
 
 // Con esta función eliminaremos todos los elementos en pantalla
