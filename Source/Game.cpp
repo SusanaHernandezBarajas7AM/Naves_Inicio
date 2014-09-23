@@ -5,7 +5,7 @@
 CGame::CGame(){
 	///ACT2: Mal, Debe ser la variable lo que pongas y no el nombre de tu enumerador. tu variable se llama estado, y debes de asignarle
 	//un valor de los que tiene nu enumerador, eso seria tu primer estado.
-	Estado; 
+	estado=Estado::Estado_Iniciando;
 }
 
 // Con esta función eliminaremos todos los elementos en pantalla
@@ -26,9 +26,9 @@ bool CGame::Start()
 		case  Estado::Estado_Jugando:	//JUGAR	
 			break;
 		case  Estado::Estado_Terminando: //SALIR
+		    salirJuego = true;
+		break;
 		case  Estado::Estado_Finalizando:
-				break;
-				salirJuego = true;
 			break;
 		};
     }
