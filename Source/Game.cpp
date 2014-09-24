@@ -5,10 +5,6 @@
 #include "SDL_image.h"
 
 CGame::CGame(){
-
-	
-	///ACT2: Mal, Debe ser la variable lo que pongas y no el nombre de tu enumerador. tu variable se llama estado, y debes de asignarle
-	//un valor de los que tiene nu enumerador, eso seria tu primer estado.
 	estado=Estado::Estado_Iniciando;
 
 	atexit(SDL_Quit);
