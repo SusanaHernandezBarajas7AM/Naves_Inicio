@@ -6,16 +6,14 @@
 
 CGame::CGame(){
 	estado=Estado::Estado_Iniciando;
-     atexit(SDL_Quit);
-	
-	
+    atexit(SDL_Quit);
 }
 
 // Con esta función eliminaremos todos los elementos en pantalla
 void CGame::Finalize(){
 	SDL_Quit();
-	
 }
+
 void CGame::Iniciando()
 {
 	if(SDL_Init(SDL_INIT_VIDEO))
