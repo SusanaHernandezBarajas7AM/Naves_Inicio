@@ -3,6 +3,7 @@
 
 class SpriteDef
 {
+
 	struct Modulos
 	{
 		int id;
@@ -11,9 +12,10 @@ class SpriteDef
 		int w;
 		int h;
 	};
+public:
 
 	Modulos modulos [1];
-	SpriteDef();
+	SpriteDef(); 
 
 };
 
