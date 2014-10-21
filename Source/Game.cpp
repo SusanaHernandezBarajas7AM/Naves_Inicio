@@ -34,8 +34,9 @@ void CGame::Iniciando()
 	SDL_WM_SetCaption("Mi primer juego", NULL);
 	atexit(SDL_Quit);
 
-	nave = new Nave(screen, "../Data/minave.bmp");
-	nave = new Nave(screen,"../Data/minave.bmp");
+	nave = new Nave(screen, "../Data/minave.bmp",(WIDTH_SCREEN/2)/*-(sprite->WidthModule(0)/2)*/,(HEIGHT_SCREEN-80)/*-(sprite->HeightModule(0))*/);
+	enemigo = new Nave(screen,"../Data/enemigo.bmp",0,0);
+	enemigo->SetAutoMovimiento(true);
 
 	 //delete nave;
 
@@ -81,6 +82,7 @@ bool CGame::Start()
 		case Estado::Estado_Menu:
 			//nave ->PintarModulo(0, 0,0,64, 64); 
 			//nave->PintarModulo(0,100,100);
+			enemigo->Actualizar();
 			SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format,0,0,0));
 
 			Keys = SDL_GetKeyState(NULL);
@@ -94,6 +96,7 @@ bool CGame::Start()
 			}
 			
 			nave->Pintar(); // los 3 casos siguientes son el primero aplicando a las demas direcciones
+			enemigo->Pintar();
 			break;
 		case  Estado::Estado_Jugando:	//JUGAR	
 			break;
