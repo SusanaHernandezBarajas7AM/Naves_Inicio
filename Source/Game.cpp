@@ -46,7 +46,7 @@ bool CGame::Start()
 {
 	// Esta variable nos ayudara a controlar la salida del juego...
 	int salirJuego = false;
-
+	int i=0;
           
 	while (salirJuego == false){
 		
@@ -54,6 +54,7 @@ bool CGame::Start()
 		//Maquina de estados
 		switch(estado){
 		case  Estado::Estado_Iniciando: //INICIALIZAR
+			printf("1.- ESTADO_INICIANDO");
 			Iniciando();
 			
 			//{
@@ -76,42 +77,83 @@ bool CGame::Start()
 			//	
 
 			//}
-			estado=Estado::Estado_Menu;
+			estado=Estado_Menu;
+			//estado=Estado::Estado_Menu;
 			
 			break;
 		case Estado::Estado_Menu:
-			//nave ->PintarModulo(0, 0,0,64, 64); 
-			//nave->PintarModulo(0,100,100);
-			enemigo->Actualizar();
-			SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format,0,0,0));
-
-			Keys = SDL_GetKeyState(NULL);
-			if(Keys[SDLK_RIGHT])
+			if(i == 0)
 			{
-				nave->Mover(1);	
+				printf("\n2.- ESTADO_MENU");
+				estado = Estado_Jugando;
+				i = 1;
 			}
-			if(Keys[SDLK_LEFT])
+			else
 			{
-				nave->Mover(-1);	
+				printf("\n2.- ESTADO_MENU");
+				estado = Estado_Finalizando;
 			}
 			
-			nave->Pintar(); // los 3 casos siguientes son el primero aplicando a las demas direcciones
-			enemigo->Pintar();
+			//nave ->PintarModulo(0, 0,0,64, 64); 
+			//nave->PintarModulo(0,100,100);
+			//enemigo->Actualizar();
+			//SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format,0,0,0));
+
+			//Keys = SDL_GetKeyState(NULL);
+			//if(Keys[SDLK_RIGHT])
+			//{
+			//	if(!EsLimitePantalla(nave))
+			//	nave->Mover(1);	
+			//}
+			//if(Keys[SDLK_LEFT])
+			//{
+			//	nave->Mover(-1);	
+			//}
+			//
+			//nave->Pintar(); // los 3 casos siguientes son el primero aplicando a las demas direcciones
+			//enemigo->Pintar();
 			break;
 		case  Estado::Estado_Jugando:	//JUGAR	
+			enemigo->Actualizar();
+			SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format,0,0,0));
+			Keys = SDL_GetKeyState(NULL);
+			if (Keys[SDLK_RIGHT])
+			{
+				if(!EsLimitePantalla(nave))
+				nave->Mover(1);
+			}
+			if (Keys[SDLK_LEFT])
+			{
+				if(!EsLimitePantalla(nave))
+				nave->Mover(-1);
+			}
+			nave->Pintar();
+			enemigo->Pintar();
+
+			if (Keys[SDLK_ESCAPE])
+			{
+				printf("\n3.- ESTADO_JUGANDO");
+				estado = Estado_Terminando;
+			}
 			break;
 		case  Estado::Estado_Terminando: //SALIR
-		    salirJuego = true;
+			printf("\n4.- ESTADO_TERMINANDO");
+			estado=Estado_Menu;
+
+		   // salirJuego = true;
 		break;
 		case  Estado::Estado_Finalizando:
+			printf("\n5.- ESTADO_FINALIZANDO");
+			getchar();
+			salirJuego = true;
 			break;
 			
 			
 		};
 		while (SDL_PollEvent(&event)) // aqui SDL creara una lista de eventos ocurridos
 			{
-				if(event.type==SDL_QUIT) {salirJuego = true;} // si se detecta una salida de SDL o....
-				if(event.type==SDL_KEYDOWN) { }
+				if (event.type == SDL_QUIT) { salirJuego = true;} // si se detecta una salida de SDL o....
+				if (event.type==SDL_KEYDOWN) { }
 			}
 
 		// este codigo estara provicionalmente aqui
@@ -119,3 +161,18 @@ bool CGame::Start()
     }
 	return true;
 }
+
+bool CGame::EsLimitePantalla(Nave * objeto/*,*/ /*int bandera*/)
+{
+	if(objeto->ObtenerX() <=0)
+		return true;
+	if(objeto->ObtenerY() <=0)
+		return true;
+	if(objeto->ObtenerX() >= WIDTH_SCREEN-objeto->ObtenerW())
+		return true;
+	if(objeto->ObtenerY() >= HEIGHT_SCREEN-objeto->ObtenerH())
+		return true;
+	return false;
+	
+}
+  

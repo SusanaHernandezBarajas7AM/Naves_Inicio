@@ -1,6 +1,8 @@
 #include <SDL_image.h>
 #include "Nave.h"
 
+
+
 class CGame
 {
 public:
@@ -22,6 +24,8 @@ public:
 
 private:
 	void Iniciando();
+
+	bool EsLimitePantalla(Nave * objeto/*,*/ /*int bandera*/);
 
 	Uint8 *Keys; //esta variable nos servira para ver si determinadas teclas estan o no pulsadas
 	SDL_Event event; // la variable vent de tipo evento de SDL nos servira para monitorizar el teclado.
