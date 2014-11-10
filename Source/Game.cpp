@@ -7,6 +7,7 @@
 
 
 CGame::CGame(){
+	tiempoFrame=0;
 	estado=Estado::Estado_Iniciando;
     atexit(SDL_Quit);
 }
@@ -48,6 +49,7 @@ void CGame::Iniciando()
 		enemigoArreglo[i]->SetPasoLimite(4);
 
 	}
+	tick=0;
 	//enemigo->SetAutoMovimiento(false);
 	//enemigo->SetPasoLimite(4);
 
@@ -200,6 +202,20 @@ bool CGame::Start()
 
 		// este codigo estara provicionalmente aqui
 		SDL_Flip(screen);
+		//calculando FPS
+		int tiempoFrameFinal=SDL_GetTicks();
+		
+		printf("%d   %d  %f  %d\n",tick,SDL_GetTicks(), (float)SDL_GetTicks()/(float)tick,tiempoFrameFinal-tiempoFrame);
+		tiempoFrame=tiempoFrameFinal; // marcamos el inicio nuevamente
+		tick++;
+
+
+
+
+
+
+
+
     }
 	return true;
 }
