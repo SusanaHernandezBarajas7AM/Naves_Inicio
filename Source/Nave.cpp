@@ -1,11 +1,12 @@
 #include "Nave.h"
 //#include "Config.h"
-Nave::Nave(SDL_Surface *screen, char * rutaImagen, int x, int y)
+Nave::Nave(SDL_Surface *screen, char * rutaImagen, int x, int y, int module)
 {
+	this->module=module;
 	sprite = new Sprite(screen);
 	sprite->CargarImagen(rutaImagen);
-	w = sprite->WidthModule(0);
-	h = sprite->HeightModule(0);
+	w = sprite->WidthModule(this->module);
+	h = sprite->HeightModule(this->module);
 	//x=(WIDTH_SCREEN/2)-(sprite->WidthModule(0)/2); //ancho
 	//y=(HEIGHT_SCREEN-80)-(sprite->HeightModule(0)); //alto
 	this->x =x;
@@ -37,7 +38,7 @@ void Nave::Actualizar()
 }
 void Nave::Pintar()
 {
-	sprite->PintarModulo(0,x,y);
+	sprite->PintarModulo(module,x,y);
 
 }
 

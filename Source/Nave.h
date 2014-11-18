@@ -16,11 +16,12 @@ class Nave
 	//int pasos;
 	int pasoActual;
 	int pasoLimite;
+	int module; // MODULO ACTUAL
 
 public:
 
 	void Mover(int posicion);
-	Nave(SDL_Surface * screen, char * rutaImagen, int x, int y); // constructor
+	Nave(SDL_Surface * screen, char * rutaImagen, int x, int y,int module); // constructor
 	void SetAutoMovimiento(bool autoMovimiento);
 	void SetPasoLimite(int pasos);
 	int ObtenerPasoActual();

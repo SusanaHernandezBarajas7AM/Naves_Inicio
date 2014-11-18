@@ -36,13 +36,14 @@ void CGame::Iniciando()
 	SDL_WM_SetCaption("Mi primer juego", NULL);
 	atexit(SDL_Quit);
 
-	nave = new Nave(screen, "../Data/minave.bmp",(WIDTH_SCREEN/2)/*-(sprite->WidthModule(0)/2)*/,(HEIGHT_SCREEN-80)/*-(sprite->HeightModule(0))*/);
+	nave = new Nave(screen, "../Data/minave.bmp",(WIDTH_SCREEN/2),(HEIGHT_SCREEN-80),0);
+	menu=new Nave(screen, "../Data/Menu.bmp",0,0,1);
 	//enemigo = new Nave(screen,"../Data/enemigo.bmp",0,0);
 
 
 	for(int i=0;i<10;i++)
 	{
-		enemigoArreglo[i] = new Nave(screen,"../Data/enemigo.bmp",i*60,0);
+		enemigoArreglo[i] = new Nave(screen,"../Data/enemigo.bmp",i*60,0,2);
 		enemigoArreglo[i]->SetAutoMovimiento(false);
 		enemigoArreglo[i]->SetPasoLimite(4);
 
@@ -64,7 +65,7 @@ bool CGame::Start()
 		//Maquina de estados
 		switch(estado){
 		case  Estado::Estado_Iniciando: //INICIALIZAR
-			//printf("1.- ESTADO_INICIANDO");
+			
 			Iniciando();
 			
 			
@@ -72,6 +73,7 @@ bool CGame::Start()
 			
 			break;
 		case Estado::Estado_Menu:
+			menu->Pintar();
 			
 			break;
 		case  Estado::Estado_Jugando:	//JUGAR	

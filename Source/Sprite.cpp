@@ -3,6 +3,9 @@
 
 #include "Sprite.h"
 
+
+
+
 Sprite::Sprite(SDL_Surface * screen) //constructor
 {
 	screen;
