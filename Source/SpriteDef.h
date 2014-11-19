@@ -14,7 +14,7 @@ class SpriteDef
 	};
 public:
 
-	Modulos modulos [3]; //numero de modulos
+	Modulos modulos [9]; //numero de modulos
 	SpriteDef(); 
 
 };
