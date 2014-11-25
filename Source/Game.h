@@ -27,7 +27,7 @@ private:
 	void Menu();
 	void MoverEnemigo();
 
-	bool EsLimitePantalla(Nave * objeto,int bandera);
+	bool EsLimitePantalla(Objeto * objeto,int bandera);
 
 	int opcionSeleccionada;
 	Uint8 *Keys; //esta variable nos servira para ver si determinadas teclas estan o no pulsadas
@@ -36,17 +36,18 @@ private:
 
 
 	SDL_Surface *screen;
-     Nave * nave;
+     Objeto * nave;
 	 //Nave * enemigo;
-	 Nave *enemigoArreglo [10];
+	 Objeto *enemigoArreglo [10];
 
-	 Nave *menu; //Fondo del menu
-	 Nave *textos; //Textos del juego
-	 Nave *fondo; // Fondo del juego
+	 Objeto *menu; //Fondo del menu
+	 Objeto *textos; //Textos del juego
+	 Objeto *fondo; // Fondo del juego
 
 	 int tick;
 	 int tiempoFrameInicial;
 	 int tiempoFrameFinal;
+	
 	
 	
 	  Estado estado;

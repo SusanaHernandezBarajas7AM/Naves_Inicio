@@ -36,15 +36,17 @@ void CGame::Iniciando()
 	SDL_WM_SetCaption("Mi primer juego", NULL);
 	atexit(SDL_Quit);
 
-	nave = new Nave(screen, "../Data/minave.bmp",(WIDTH_SCREEN/2),(HEIGHT_SCREEN-80),MODULO_MINAVE_NAVE);
-	menu=new Nave(screen, "../Data/Menu.bmp",0,0,MODULO_MENU_FONDO);
-	textos = new Nave(screen, "../Data/Texto.bmp",0,0,-1);
+
+	nave = new Objeto(screen, "../Data/minave.bmp",(WIDTH_SCREEN/2),(HEIGHT_SCREEN-80),MODULO_MINAVE_NAVE);
+	menu=new Objeto(screen, "../Data/Menu.bmp",0,0,MODULO_MENU_FONDO);
+	textos = new Objeto(screen, "../Data/Texto.bmp",0,0,-1);
+	fondo = new Objeto(screen, "../Data/Juego.bmp",0,0,MODULO_MENU_FONDO);
 	//enemigo = new Nave(screen,"../Data/enemigo.bmp",0,0);
 
 
 	for(int i=0;i<10;i++)
 	{
-		enemigoArreglo[i] = new Nave(screen,"../Data/enemigo.bmp",i*60,0,MODULO_ENEMIGO_NAVE);
+		enemigoArreglo[i] = new Objeto(screen,"../Data/enemigo.bmp",i*60,0,MODULO_ENEMIGO_NAVE);
 		enemigoArreglo[i]->SetAutoMovimiento(false);
 		enemigoArreglo[i]->SetPasoLimite(4);
 
@@ -68,11 +70,10 @@ bool CGame::Start()
 		//Maquina de estados
 		switch(estado){
 		case  Estado::Estado_Iniciando: //INICIALIZAR
-			
-			Iniciando();
-			
-			
-			estado=Estado::Estado_Menu;
+		Iniciando();
+		estado= Estado_Jugando;
+		
+		//estado=Estado::Estado_Menu;
 			
 			break;
 		case Estado::Estado_Menu:
@@ -93,17 +94,18 @@ bool CGame::Start()
 			}
 			//enemigo->Actualizar();
 			MoverEnemigo();
-			SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format,0,0,0));
+			fondo->Pintar();
+			//SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format,0,0,0));
 			Keys = SDL_GetKeyState(NULL);
 			if (Keys[SDLK_RIGHT])
 			{
 				if(!EsLimitePantalla(nave, BORDE_DERECHO))
-				nave->Mover(1);
+				nave->Mover(10);
 			}
 			if (Keys[SDLK_LEFT])
 			{
 				if(!EsLimitePantalla(nave, BORDE_IZQUIERDO))
-				nave->Mover(-1);
+				nave->Mover(-10);
 			}
 			
 			nave->Pintar();
@@ -158,7 +160,7 @@ bool CGame::Start()
 	return true;
 }
 
-bool CGame::EsLimitePantalla(Nave * objeto,int bandera)
+bool CGame::EsLimitePantalla(Objeto * objeto,int bandera)
 
 {
 	if(bandera & BORDE_IZQUIERDO)
@@ -212,7 +214,7 @@ void CGame::MoverEnemigo()
         /////// PASO 0 ////////
 		if(enemigoArreglo[i]->ObtenerPasoActual()==0)
 	if(!EsLimitePantalla(enemigoArreglo[i],BORDE_DERECHO))
-	enemigoArreglo[i]->Mover(1); //DERECHA
+	enemigoArreglo[i]->Mover(5); //DERECHA
 	else
 	{
 		enemigoArreglo[i]->IncrementarPasoActual();
@@ -226,7 +228,7 @@ void CGame::MoverEnemigo()
 	    //////////////PASO 2/////////////////////
 	if(enemigoArreglo[i]->ObtenerPasoActual()==2)
 		if(!EsLimitePantalla(enemigoArreglo[i], BORDE_IZQUIERDO))
-			enemigoArreglo[i]->Mover(-1); //IZQUIERDA
+			enemigoArreglo[i]->Mover(-5); //IZQUIERDA
 	else
 	{
 		enemigoArreglo[i]->IncrementarPasoActual();

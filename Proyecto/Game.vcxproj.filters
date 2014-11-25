@@ -30,6 +30,9 @@
     <ClCompile Include="..\Source\Nave.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Stage.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Game.h">
@@ -46,6 +49,9 @@
     </ClInclude>
     <ClInclude Include="..\Source\Nave.h">
       <Filter>Archivos de código fuente</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Stage.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
